@@ -1,9 +1,9 @@
+set re=1 " regexp engine slow down html files re=1 use old one which works much faster.
 set bg=dark
 set nocompatible		" niekompatybilny z VI => włącz bajery VIMa
 set autoindent 		" zaczynanie nowej lini od pozycji kursora w popdzedniej lini
 set smartindent
 set nobackup			" nie trzymaj kopii zapasowych, używaj wersji
-set pastetoggle=<F5> " przełączanie w tryb wklejania nie są uwzględniane wcięcia
 set backspace=indent,eol,start
 set viminfo='20,\"50		" read/write a .viminfo file, don't store more than 50 lines of registers
 set history=50			" keep 50 lines of command line history
@@ -12,8 +12,7 @@ set showcmd			" display incomplete commands
 set incsearch			" do incremental searching
 set browsedir=buffer		" To get the File / Open dialog box to default to the current file's directory
 set pastetoggle=<F11>		" przełączanie w tryb wklejania (nie będzie automatycznych wcięć, ...)
-set nonumber			" nie wyświetlaj nr linii
-setlocal number			" pierwszy odpalony bufor ma nrki
+set number			" wyświetlaj nr linii
 set wildmenu			" wyświetlaj linie z menu podczas dopełniania
 set showmatch			" pokaz otwierający nawias gdy wpisze zamykający
 set so=5			" przewijaj juz na 5 linii przed końcem
@@ -28,72 +27,59 @@ set tw=80
 set tags+=./stl_tags		" tip 931
 set foldtext=MojFoldText()	" tekst po zwinięciu zakładki
 set foldminlines=3		" minimum 3 linie aby powstał fold
-"set wildmode=longest:full	" dopełniaj jak w BASHu
-"set cpoptions="A"
-"set keymodel=startsel,stopsel	" zaznaczanie z shiftem
-set spelllang=pl
+set hlsearch		" zaznaczanie szukanego tekstu
+
 let php_sql_query = 1		" podkreślanie składni SQL w PHP
 let php_htmlInStrings = 1	" podkreślanie składni HTML w PHP
 let python_highlight_all = 1
 
-" MACROS
-" reformating html
-let @h=':%s/>\s*</>\r</g:set ft=htmlggVG='
-
-
 behave xterm
 
-if &t_Co > 2 || has("gui_running")
-	syntax on		" kolorowanie składni
-	set hlsearch		" zaznaczanie szukanego tekstu
-endif
-if has("gui_running")
-	set foldcolumn=2	" szerokość kolumny z zakładkami
-	set guioptions=abegimrLtT	" m.in: włącz poziomy scrollbar
-	set nowrap
-	set cursorline		" zaznacz linię z kursorem
-	"set cursorcolumn	" zaznacz kolumnę z kursorem
-else
-	"set ts=4		" jak odpalony w konsoli to znaki tabulacji o polowe mniejsze
-endif
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-" automatyczne rozpoznawanie typu pliku, ladowanie specyficznego, dla danego typu, pluginu (ftplugin.vim, indent.vim):
-
+" Vim Bundle
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-bundler'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'Raimondi/delimitMate'
+Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-surround'
 
 " latex
 
-filetype plugin on " invoke latex-suite when you open a tex file
-set shellslash
-
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
-filetype indent on
-:nmap <C-f> :FindFile<CR>
-
+"set shellslash
+""
+"set grepprg=grep\ -nH\ $*
+"let g:tex_flavor='latex'
+"filetype indent on
+":nmap <C-f> :FindFile<CR>
+"
 " surround mapping
 "
 let g:surround_45 = "<% \r %>"
 let g:surround_61 = "<%= \r %>"
-
-
-
-set nobackup
-set nowritebackup
-set noswapfile
-
-" Autoremoving all trialling whitespace during save
-autocmd BufWritePre * :%s/\s\+$//e
-
-autocmd BufReadPost *
- \ if line("'\"") > 1 && line("'\"") <= line("$") |
- \  exe "normal! g`\"" |
- \ endif
-
-" latex config
-
-let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_ViewRule_pdf='xpdf'
-
+""
+""
+""
+"set nowritebackup
+""
+"" Autoremoving all trialling whitespace during save
+"autocmd BufWritePre * :%s/\s\+$//e
+""
+""" latex config
+""
+"let g:Tex_DefaultTargetFormat='pdf'
+"let g:Tex_ViewRule_pdf='xpdf'
+""
+filetype on
+filetype indent on
 filetype plugin on
-set ofu=syntaxcomplete#Complete
 
+"" MACROS
+"" reformating html
+"let @h=':%s/>\s*</>\r</g:set ft=htmlggVG='
+
+syntax on		" kolorowanie składni
