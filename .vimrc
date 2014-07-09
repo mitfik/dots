@@ -48,6 +48,7 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-surround'
 Bundle 'mileszs/ack.vim'
+Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 
 " latex
 
