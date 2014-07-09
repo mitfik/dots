@@ -1,5 +1,5 @@
 ! Defaults for all xterm clients
-XTerm*saveLines: 4096
+XTerm*saveLines: 81920
 *background: #242424
 *foreground: #e2e2e5
 # Black
