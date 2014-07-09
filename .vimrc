@@ -47,6 +47,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'Raimondi/delimitMate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-surround'
+Bundle 'mileszs/ack.vim'
 
 " latex
 
@@ -66,8 +67,8 @@ let g:surround_61 = "<%= \r %>"
 ""
 "set nowritebackup
 ""
-"" Autoremoving all trialling whitespace during save
-"autocmd BufWritePre * :%s/\s\+$//e
+" Autoremoving all trialling whitespace during save
+autocmd BufWritePre * :%s/\s\+$//e
 ""
 """ latex config
 ""
@@ -83,3 +84,4 @@ filetype plugin on
 "let @h=':%s/>\s*</>\r</g:set ft=htmlggVG='
 
 syntax on		" kolorowanie składni
+let g:tex_flavor='latex'
