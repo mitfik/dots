@@ -12,7 +12,7 @@ HISTCONTROL=ignoredups:ignorespace:erasedups
 
 # After each command, save and reload history.
 # This allow to have access to all history instantly in all open terminals
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -c; history -r;"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -108,6 +108,10 @@ fi
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
+fi
+
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+  . /usr/share/git/completion/git-completion.bash
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM
