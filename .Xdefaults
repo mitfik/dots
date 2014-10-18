@@ -1,4 +1,6 @@
 ! Defaults for all xterm clients
+XTerm*faceName: Liberation Mono
+XTerm*faceSize: 15
 XTerm*saveLines: 81920
 *background: #242424
 *foreground: #e2e2e5
